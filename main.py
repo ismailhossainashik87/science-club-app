@@ -2,12 +2,10 @@ from datetime import datetime, timedelta
 import pandas as pd
 import streamlit as st
 
-# Page Configuration
 st.set_page_config(
     page_title="Science Club Management System", page_icon="⚡", layout="wide"
 )
 
-# Initialize Session State Database (Mock DB)
 if "users" not in st.session_state:
     st.session_state.users = pd.DataFrame(
         columns=[
@@ -43,7 +41,6 @@ if "work_logs" not in st.session_state:
         ]
     )
 
-# Sidebar Navigation
 st.sidebar.title("⚡ Science Club Portal")
 menu = st.sidebar.selectbox(
     "Navigation",
@@ -55,9 +52,6 @@ menu = st.sidebar.selectbox(
     ],
 )
 
-# ---------------------------------------------------------
-# 1. REGISTRATION & VERIFICATION
-# ---------------------------------------------------------
 if menu == "Registration":
     st.header("📝 Member Registration")
     with st.form("reg_form"):
@@ -89,9 +83,6 @@ if menu == "Registration":
             else:
                 st.error("Please fill up all required fields.")
 
-# ---------------------------------------------------------
-# 2. EXAM & SMART AVAILABILITY TRACKING
-# ---------------------------------------------------------
 elif menu == "Exam & Availability":
     st.header("📅 Exam Date & Availability Tracker")
 
@@ -157,9 +148,6 @@ elif menu == "Exam & Availability":
             df["Live_Status"] = status_list
             st.dataframe(df)
 
-# ---------------------------------------------------------
-# 3. WORK LOG & CONTRIBUTION
-# ---------------------------------------------------------
 elif menu == "Work Log & Contribution":
     st.header("💼 Daily Work Tracker & Dedication Log")
 
@@ -207,9 +195,6 @@ elif menu == "Work Log & Contribution":
                 )
                 st.success("Work log saved successfully!")
 
-# ---------------------------------------------------------
-# 4. ADMIN DASHBOARD & ASSESSMENT
-# ---------------------------------------------------------
 elif menu == "Admin Dashboard":
     st.header("⚙️ Admin Panel & Assessment")
 
